@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yelow">#FFCA28</color>
+    <color name="white0">#00FFFFFF</color>
+    <color name="Gra_end">#1248A3</color>
+    <color name="Gra_start">#5B8DF8</color>
+    <color name="Gra_end2">#80FFFFFF</color>
+    <color name="Gra_start2">#80D1D1D1</color>
+    <color name="BG_BTN_NAV">#145DDC</color>
+    <color name="BG_Home">#D565D5</color>
+    <color name="BG_Home1">#E481E4</color>
+    <color name="Color_EDT">#74D5D5D5</color>
+    <color name="Color_BTN_EDT">#9A9A9A</color>
+    <color name="Color_List_theloai">#CA2121</color>
+</resources>

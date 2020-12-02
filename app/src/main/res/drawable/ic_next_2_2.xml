@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="488dp"
+    android:height="488dp"
+    android:viewportWidth="488"
+    android:viewportHeight="488">
+    <path
+        android:fillColor="#000"
+        android:name="Rounded Rectangle 1"
+        android:pathData="m158 86h30c5.5 0 10 4.5 10 10v230c0 5.5 -4.5 10 -10 10h-30c-5.5 0 -10 -4.5 -10 -10v-230c0 -5.5 4.5 -10 10 -10z" />
+    <path
+        android:name="Rounded Rectangle 1"
+        android:pathData="m188 91c2.8 0 5 2.2 5 5v230c0 2.8 -2.2 5 -5 5h-30c-2.8 0 -5 -2.2 -5 -5v-230c0 -2.8 2.2 -5 5 -5zm-30 -5c-5.5 0 -10 4.5 -10 10v230c0 5.5 4.5 10 10 10h30c5.5 0 10 -4.5 10 -10v-230c0 -5.5 -4.5 -10 -10 -10z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Rounded Rectangle 1 copy"
+        android:pathData="m300 155h30c5.5 0 10 4.5 10 10v230c0 5.5 -4.5 10 -10 10h-30c-5.5 0 -10 -4.5 -10 -10v-230c0 -5.5 4.5 -10 10 -10z" />
+    <path
+        android:name="Rounded Rectangle 1 copy"
+        android:pathData="m330 160c2.8 0 5 2.2 5 5v230c0 2.8 -2.2 5 -5 5h-30c-2.8 0 -5 -2.2 -5 -5v-230c0 -2.8 2.2 -5 5 -5zm-30 -5c-5.5 0 -10 4.5 -10 10v230c0 5.5 4.5 10 10 10h30c5.5 0 10 -4.5 10 -10v-230c0 -5.5 -4.5 -10 -10 -10z"
+        android:fillColor="#000" />
+</vector>

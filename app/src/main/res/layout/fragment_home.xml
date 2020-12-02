@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.HomeFragment"
+    android:id="@+id/frmhome">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/RTL1"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/lrlt1">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logo1"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/scriptbl"
+            android:text="Search Key"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/purple_700" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/EDTSeach"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/lrlt1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/drawble_edt"
+            android:hint="Nhập tên bài hát - Ca sĩ - Mã số"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:maxLines="1"
+            android:paddingLeft="20dp">
+
+            <requestFocus />
+
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/EDTSeach"
+            android:layout_alignTop="@+id/EDTSeach"
+            android:layout_alignEnd="@+id/EDTSeach"
+            android:layout_alignBottom="@+id/EDTSeach"
+            android:layout_marginStart="257dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white0"
+            android:scaleType="centerInside"
+            android:src="@drawable/drawbel_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EDTSeach"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            tools:listitem="@layout/item_theloai"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RTL1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:id="@+id/linearsx">
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white0"
+                android:padding="0dp"
+                android:layout_gravity="center"
+                android:text="A->Z"
+                android:textColor="@color/black"/>
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white0"
+                android:padding="0dp"
+                android:layout_gravity="center"
+                android:text="0->9"
+                android:textColor="@color/black" />
+            <ImageButton
+                android:id="@+id/btnyoutube"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/white0"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/youtube"
+                android:scaleType="centerInside"
+                />
+
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvbaihat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:clipToPadding="false"
+            android:layout_below="@+id/linearsx"
+            tools:listitem="@layout/item_baihat" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

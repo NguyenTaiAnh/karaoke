@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homeFragment" android:title="Home" android:iconTint="@color/Gra_end" android:icon="@drawable/ic_house"/>
+    <item android:id="@+id/listFragment" android:title="List" android:icon="@drawable/ic_settings_1"/>
+    <item android:title=" " />
+    <item android:id="@+id/mailFragment" android:title="Mail"  android:icon="@drawable/ic_chat_1"/>
+    <item android:id="@+id/profileFragment" android:title="Profile" android:icon="@drawable/ic_user_2"/>
+</menu>
