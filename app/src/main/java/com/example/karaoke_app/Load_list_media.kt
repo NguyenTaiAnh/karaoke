@@ -1,4 +1,4 @@
-package com.example.tunkara
+package com.example.karaoke_app
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tunkara.adapters.SongListAdapter
-import com.example.tunkara.model.SongModel
+import com.example.karaoke_app.Adapterbaihat.SongListAdapter
+import com.example.karaoke_app.model.SongModel
 import kotlinx.android.synthetic.main.activity_load_list_media.*
 
 class Load_list_media : AppCompatActivity() {

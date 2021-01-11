@@ -1,5 +1,6 @@
 package com.example.karaoke_app.Fragment
 
+import android.content.Context
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,9 @@ import com.example.karaoke_app.Adaptertheloai.Adptertheloai
 import com.example.karaoke_app.Adaptertheloai.baihat
 import com.example.karaoke_app.Adaptertheloai.theloai
 import com.example.karaoke_app.R
+import com.example.karaoke_app.entity.User
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -37,7 +40,8 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val users = ArrayList<baihat>()
+    private var ascending =true
+    val users = ArrayList<User>()
     lateinit var adapter: Adptertbaihat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +65,12 @@ class HomeFragment : Fragment() {
 
         recyclerview.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL , false)
         recyclerview.adapter = Adptertheloai(listtheloai)
-        val  listbaihat = ArrayList<baihat>()
-        val urlGetDatamusic : String = "http://192.168.0.103:8090/webservice/get_data_music.php"
-        Getdata1().execute(urlGetDatamusic)
+        val urlGetDatamusic : String = "https://byyswag.000webhostapp.com/?keyword=top karaoke nhạc trẻ 2020"
+        Getdata().execute(urlGetDatamusic)
         initAdapter()
         initRecyclerView()
-        btnyoutube.setOnClickListener {
+
+        searchBtn.setOnClickListener {
             var key_serch: String = EDTSeach.text.toString()
 
             //var key_serch2 : String = key_serch.trim()
@@ -106,31 +110,6 @@ class HomeFragment : Fragment() {
         users.clear()
     }
 
-    inner class Getdata1 : AsyncTask<String, Void, String>() {
-
-        override fun doInBackground(vararg p0: String?): String {
-            return getContentURL(p0[0])
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            var id: Int= 0
-            var name: String = ""
-            var casi: String = ""
-            var jsonArray: JSONArray = JSONArray(result)
-            for (video in 0..jsonArray.length() - 1) {
-                var objectMS: JSONObject = jsonArray.getJSONObject(video)
-                id= objectMS.getInt("ID")
-                name = objectMS.getString("TenBH")
-                casi = objectMS.getString("CaSi")
-                users.add(baihat(name,casi,id.toString()))
-                //listview.Name.text = name
-                //mangbaihat.add(id+"\n"+name+"")
-            }
-            adapter.notifyDataSetChanged()
-        }
-    }
-
     inner class Getdata : AsyncTask<String, Void, String>() {
 
         override fun doInBackground(vararg p0: String?): String {
@@ -148,7 +127,7 @@ class HomeFragment : Fragment() {
                 idd= objectVD.getString("ID")
                 namee = objectVD.getString("song")
                 url_s = objectVD.getString("songkey")
-                users.add(baihat(namee,idd,url_s))
+                users.add(User("",idd,namee,url_s))
                 //listview.Name.text = name
                 //mangbaihat.add(id+"\n"+name+"")
             }
@@ -176,6 +155,34 @@ class HomeFragment : Fragment() {
         }
         return content.toString()
     }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -196,3 +203,4 @@ class HomeFragment : Fragment() {
             }
     }
 }
+

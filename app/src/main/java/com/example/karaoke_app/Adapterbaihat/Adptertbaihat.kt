@@ -6,26 +6,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.karaoke_app.R
+import com.example.karaoke_app.entity.User
+import com.example.karaoke_app.UserViewHolder
 import kotlinx.android.synthetic.main.item_baihat.view.*
 
 
-class Adptertbaihat(private val list : List<baihat>) : RecyclerView.Adapter<Adptertbaihat.ViewHolder>() {
+class Adptertbaihat(val music : List<User>) : RecyclerView.Adapter<UserViewHolder>() {
 
-     class  ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
-        val tenhaihat : TextView = itemview.tvtenbh
-        val id : TextView = itemview.tvcasi
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val itemview = LayoutInflater.from(parent.context).inflate(R.layout.item_baihat,parent, false)
-        return ViewHolder(itemview)
+        return UserViewHolder(itemview)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currenItem = list[position]
-        holder.tenhaihat.text = currenItem.name
-        holder.id.text = currenItem.id
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val user = music[position]
+        holder.bind(user)
     }
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = music.size
 }

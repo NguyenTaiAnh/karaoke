@@ -1,4 +1,4 @@
-package com.example.tunkara
+package com.example.karaoke_app
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity

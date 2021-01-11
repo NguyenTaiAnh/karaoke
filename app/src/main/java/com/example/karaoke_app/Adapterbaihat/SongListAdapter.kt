@@ -1,8 +1,7 @@
-package com.example.tunkara.adapters
+package com.example.karaoke_app.Adapterbaihat
 
 import android.content.Context
 import android.content.Intent
-import android.icu.util.TimeUnit
 import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,11 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tunkara.Interface.CostomItemClickListener
-import com.example.tunkara.Listen_REC
-import com.example.tunkara.R
-import com.example.tunkara.model.SongModel
-import com.example.tunkara.service.PlayMusicService
+import com.example.karaoke_app.Listen_REC
+import com.example.karaoke_app.Interface.CostomItemClickListener
+import com.example.karaoke_app.R
+import com.example.karaoke_app.model.SongModel
+import com.example.karaoke_app.service.PlayMusicService
 
 class SongListAdapter(SongModel:ArrayList<SongModel>,context:Context):RecyclerView.Adapter<SongListAdapter.SongListViewHolder>() {
     var mContext = context
@@ -33,7 +32,7 @@ class SongListAdapter(SongModel:ArrayList<SongModel>,context:Context):RecyclerVi
         return mSongModel.size
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongListViewHolder {
-        var view = LayoutInflater.from(parent!!.context).inflate(R.layout.music_row,parent,false)
+        var view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_baihat,parent,false)
         return SongListViewHolder(view)
     }
 
@@ -75,12 +74,10 @@ class SongListAdapter(SongModel:ArrayList<SongModel>,context:Context):RecyclerVi
     class SongListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView),View.OnClickListener{
         var songTV:TextView
         var durationTV: TextView
-        var albumnArt: ImageView
         var mCostomItemClickListener : CostomItemClickListener?= null
         init{
-            songTV = itemView.findViewById(R.id.song_name_tv)
-            durationTV = itemView.findViewById(R.id.song_duration_tv)
-            albumnArt = itemView.findViewById(R.id.al_img_view)
+            songTV = itemView.findViewById(R.id.tvtenbh)
+            durationTV = itemView.findViewById(R.id.tvID)
             itemView.setOnClickListener(this)
         }
         fun setCostomItemClickListener(costomItemClickListener: CostomItemClickListener){

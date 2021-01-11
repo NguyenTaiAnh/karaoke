@@ -1,4 +1,4 @@
-package com.example.tunkara.entity
+package com.example.karaoke_app.entity
 
 data class User(
     val avatar: String,

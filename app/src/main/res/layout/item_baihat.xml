@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white0">
+    android:background="@color/white0"
+    android:id="@+id/Relativebaihat">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,29 +24,43 @@
             android:layout_height="wrap_content"
             android:maxLines = "1"
             android:scrollbars = "vertical"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:text="tên bài hát"
             android:textColor="@color/black"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="5dp"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:layout_toRightOf="@+id/imvlogomusic"
             android:id="@+id/tvtenbh"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
+            android:textStyle="italic|bold"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@+id/imvlogomusic"
+            android:layout_below="@+id/tvtenbh"
+            android:id="@+id/tvurl"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic|bold"
             android:text="ID"
             android:textColor="@color/black"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="5dp"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:layout_marginBottom="5dp"
             android:layout_toRightOf="@+id/imvlogomusic"
             android:layout_below="@+id/tvtenbh"
-            android:id="@+id/tvcasi"
+            android:id="@+id/tvID"
             />
     </RelativeLayout>
 

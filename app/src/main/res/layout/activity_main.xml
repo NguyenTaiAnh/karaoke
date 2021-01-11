@@ -5,25 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:background="@drawable/drawble_home"/>
+            android:layout_height="500dp"
+            android:gravity="top"
+            android:background="@drawable/drawble_home"
+            android:id="@+id/layouttop"
+            android:orientation="horizontal" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_drawble_list"/>
-    </LinearLayout>
+            android:layout_height="500dp"
+            android:layout_below="@+id/layouttop"
+            android:background="@drawable/bg_drawble_list"
+            android:orientation="horizontal"/>
+    </RelativeLayout>
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -33,11 +31,9 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_kara"
         />
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_height="match_parent">
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -47,10 +43,10 @@
         app:itemIconTint="@color/color_bottonnavigation"
         app:itemTextColor="@color/color_bottonnavigation"
         app:labelVisibilityMode="unlabeled"
-
         android:id="@+id/BtnNavBar"
+        android:layout_gravity="bottom"
         />
-    </LinearLayout>
+    </FrameLayout>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
