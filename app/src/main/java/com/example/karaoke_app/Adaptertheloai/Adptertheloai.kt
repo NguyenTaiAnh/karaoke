@@ -10,9 +10,11 @@ import com.example.karaoke_app.R
 import kotlinx.android.synthetic.main.item_theloai.view.*
 
 
-class Adptertheloai(private val list : List<theloai>) : RecyclerView.Adapter<Adptertheloai.ViewHolder>() {
+class Adptertheloai(private val list: List<theloai>,
+                    ) :
+                    RecyclerView.Adapter<Adptertheloai.ViewHolder>() {
 
-    class  ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
+    inner class  ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview){
         val imageview : ImageView = itemview.image_view
         val textview : TextView = itemview.text_view
     }
@@ -26,7 +28,9 @@ class Adptertheloai(private val list : List<theloai>) : RecyclerView.Adapter<Adp
         val currenItem = list[position]
         holder.imageview.setImageResource(currenItem.image)
         holder.textview.text = currenItem.text
+
     }
+
 
     override fun getItemCount() = list.size
 }

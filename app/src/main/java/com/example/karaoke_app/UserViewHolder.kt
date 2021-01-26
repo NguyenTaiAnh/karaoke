@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.karaoke_app.R
 import com.example.karaoke_app.entity.User
 import com.example.karaoke_app.play_video
+
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -19,7 +20,7 @@ class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     private val rlRoot: RelativeLayout = v.findViewById(R.id.Relativebaihat)
     // private val rlRoot2 : LinearLayout = v.findViewById(R.id.video)
     //private val youtu : YouTubePlayerView? = v.findViewById(R.id.youtube_player_view)
-    val intent = Intent(rlRoot.context, play_video ::class.java)
+    val intent = Intent(rlRoot.context, play_video::class.java)
 
     //val pd :ProgressDialog = ProgressDialog()
 
@@ -33,8 +34,6 @@ class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     }
 
     private fun clickEvent(user: User) {
-
-
 
         rlRoot.setOnClickListener {
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgkaraoke"
     android:id="@+id/video">
+
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtube_player_view"
         android:layout_width="match_parent"
@@ -15,87 +16,33 @@
         app:showFullScreenButton="true"
         >
     </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rvAmUser2"
-        android:layout_marginHorizontal="10dp"/>
-
-    <LinearLayout
+        android:id="@+id/rcvbaihat1"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:background="@drawable/bg_drawble_list1"
-        >
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_height="30dp"
-                android:layout_width="30dp"
-                android:layout_gravity="center"
-                android:id="@+id/btn_replay"
-                android:background="@drawable/ic_reload"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_settings_voice_black_24dp"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:clipToPadding="false"
+        android:layout_below="@+id/youtube_player_view"
+        tools:listitem="@layout/item_baihat"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:id="@+id/btn_record"
-                    android:background="@drawable/bg_drawble_list"
-                    android:text="PLAY"
-                    android:layout_height="40dp"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/bg_drawble_list"
-                    android:text="STOP"
-                    android:id="@+id/btn_stoprecord"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_toEndOf="@+id/btn_record"
+        android:layout_height="match_parent">
 
-                    android:layout_height="40dp"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:background="@drawable/bg_drawble_list"
-                    android:id="@+id/btn_replayrecord"
-                    android:layout_toEndOf="@+id/btn_stoprecord"
-                    android:text="REPLAY"
-                    android:layout_height="40dp"
-                    />
-            </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="15dp"
+            app:fabSize="auto"
+            android:src="@drawable/ic_reload"
+            android:backgroundTint="@color/Gra_start">
 
-    </LinearLayout>
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.item_baihat.view.*
 
 class Adptertbaihat(val music : List<User>) : RecyclerView.Adapter<UserViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val itemview = LayoutInflater.from(parent.context).inflate(R.layout.item_baihat,parent, false)
         return UserViewHolder(itemview)

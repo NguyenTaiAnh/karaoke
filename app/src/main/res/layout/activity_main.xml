@@ -7,20 +7,8 @@
     tools:context=".MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:gravity="top"
-            android:background="@drawable/drawble_home"
-            android:id="@+id/layouttop"
-            android:orientation="horizontal" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_below="@+id/layouttop"
-            android:background="@drawable/bg_drawble_list"
-            android:orientation="horizontal"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/bgkaraoke">
     </RelativeLayout>
     <fragment
         android:id="@+id/fragment"

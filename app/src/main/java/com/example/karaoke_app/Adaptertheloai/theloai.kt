@@ -1,4 +1,4 @@
 package com.example.karaoke_app.Adaptertheloai
 
-data class theloai(val image : Int , val text : String )  {
+data class theloai(var image : Int , var text : String )  {
 }

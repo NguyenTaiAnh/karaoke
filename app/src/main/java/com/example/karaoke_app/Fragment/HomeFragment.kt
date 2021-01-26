@@ -1,30 +1,48 @@
 package com.example.karaoke_app.Fragment
 
+import android.app.DownloadManager
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.os.AsyncTask
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.arlib.floatingsearchview.FloatingSearchView
+import com.arlib.floatingsearchview.suggestions.SearchSuggestionsAdapter
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.example.karaoke_app.Adaptertheloai.Adptertbaihat
 import com.example.karaoke_app.Adaptertheloai.Adptertheloai
-import com.example.karaoke_app.Adaptertheloai.baihat
 import com.example.karaoke_app.Adaptertheloai.theloai
 import com.example.karaoke_app.R
 import com.example.karaoke_app.entity.User
+import com.example.karaoke_app.model.Suggestion
+import com.example.searchkey.core.api.ApiService
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.*
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +54,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -53,6 +71,105 @@ class HomeFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val suggestions: MutableList<Suggestion> = ArrayList()
+        EDTSeach.setOnQueryChangeListener(
+                object : FloatingSearchView.OnQueryChangeListener {
+                    override fun onSearchTextChanged(oldQuery: String, newQuery: String) {
+                        if (!oldQuery.equals("") && newQuery.equals("")) {
+                            EDTSeach.clearSuggestions();
+                        } else {
+                            EDTSeach.showProgress()
+                            ApiService.mAPIServices("http://suggestqueries.google.com/")
+                                    .getKeyword(newQuery)
+                                    .enqueue(object : Callback<Any> {
+                                        override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                                            println(Gson().toJson(response.body()))
+                                            try {
+                                                //arr_main chính là từ khoá bạn muốn được suggest
+                                                //arr_sub chính là kết quả suggest được trả về từ google
+                                                val arr_main: JSONArray = JSONArray(Gson().toJson(response.body()))
+                                                val arr_sub: JSONArray = JSONArray(arr_main.getString(1))
+                                                for (i in 0 until arr_sub.length() ) {
+                                                    suggestions.add(Suggestion(arr_sub.getString(i)))
+                                                }
+                                            } catch (e: JSONException) {
+                                                e.printStackTrace()
+                                            }
+                                            //gởi dữ liệu sang MainActivity.java
+                                            EDTSeach.clearSuggestions()
+                                            getSuggestion(suggestions)
+                                        }
+
+                                        override fun onFailure(call: Call<Any>, t: Throwable) {
+                                            throw t
+                                        }
+                                    })
+                        }
+                    }
+                }
+        )
+
+        EDTSeach.setOnMenuItemClickListener(
+                object : FloatingSearchView.OnMenuItemClickListener {
+                    override fun onActionMenuItemSelected(item: MenuItem) {
+                        if (item.itemId == R.id.action_voice_rec) {
+                            val intent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+                            intent.putExtra(
+                                    RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                                    RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+                            )
+                            startActivityForResult(intent, 0)
+                        }
+
+                    }
+                })
+        EDTSeach.setOnBindSuggestionCallback(
+                object : SearchSuggestionsAdapter.OnBindSuggestionCallback {
+                    override fun onBindSuggestion(
+                            suggestionView: View?,
+                            leftIcon: ImageView?,
+                            textView: TextView?,
+                            item: SearchSuggestion?,
+                            itemPosition: Int
+                    ) {
+                    }
+
+                })
+        EDTSeach.setOnSearchListener(
+                object : FloatingSearchView.OnSearchListener{
+                    override fun onSuggestionClicked(searchSuggestion: SearchSuggestion?) {
+
+                        onSearchAction(searchSuggestion?.body).toString()
+
+                    }
+
+                    override fun onSearchAction(currentQuery: String?) {
+                        var key_serch: String = currentQuery.toString()
+
+                        //var key_serch2 : String = key_serch.trim()
+
+                        if(key_serch.isNullOrBlank() == true)
+                        {
+                            //Toast.makeText(applicationContext,loi, Toast.LENGTH_LONG).show()
+                        }else {
+                            var key_serch2:String = key_serch.replace(' ','+')
+                            var urlyoutube: String = "https://byyswag.000webhostapp.com/?keyword="
+                            urlyoutube = urlyoutube.plus(key_serch2)
+                            clearListVideo()
+                            Getdata().execute(urlyoutube)
+                            initAdapter()
+                            initRecyclerView()
+                            EDTSeach.clearSuggestions()
+                            EDTSeach.clearQuery()
+                            EDTSeach.clearSearchFocus()
+                        }
+                    }
+                }
+        )
+
+
+
         val  listtheloai = ArrayList<theloai>()
         listtheloai.add(theloai(R.drawable.nhactre , "Nhạc Trẻ" ))
         listtheloai.add(theloai(R.drawable.trutinh , "Trữ Tình" ))
@@ -63,31 +180,44 @@ class HomeFragment : Fragment() {
         listtheloai.add(theloai(R.drawable.dance , "Dance Việt"))
         listtheloai.add(theloai(R.drawable.aumy , "Âu Mỹ"))
 
+
         recyclerview.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL , false)
         recyclerview.adapter = Adptertheloai(listtheloai)
         val urlGetDatamusic : String = "https://byyswag.000webhostapp.com/?keyword=top karaoke nhạc trẻ 2020"
         Getdata().execute(urlGetDatamusic)
         initAdapter()
         initRecyclerView()
-
-        searchBtn.setOnClickListener {
-            var key_serch: String = EDTSeach.text.toString()
-
-            //var key_serch2 : String = key_serch.trim()
-
-            if(key_serch.isNullOrBlank() == true)
-            {
-                //Toast.makeText(applicationContext,loi, Toast.LENGTH_LONG).show()
-            }else {
-                var key_serch2:String = key_serch.replace(' ','+')
-                var urlyoutube: String = "https://byyswag.000webhostapp.com/?keyword="
-                urlyoutube = urlyoutube.plus(key_serch2)
-                clearListVideo()
-                Getdata().execute(urlyoutube)
-                initAdapter()
-                initRecyclerView()
-            }
+        Sortname.setOnClickListener{
+            users.sortWith(compareBy{
+                it.name.toString()
+            })
+            adapter.notifyDataSetChanged()
         }
+        SortID.setOnClickListener{
+            users.sortWith(compareBy{
+                it.id.toString()
+            })
+            adapter.notifyDataSetChanged()
+        }
+//        searchBtn.setOnClickListener {
+//            var key_serch: String = EDTSeach.text.toString()
+//
+//            //var key_serch2 : String = key_serch.trim()
+//
+//            if(key_serch.isNullOrBlank() == true)
+//            {
+//                //Toast.makeText(applicationContext,loi, Toast.LENGTH_LONG).show()
+//            }else {
+//                var key_serch2:String = key_serch.replace(' ','+')
+//                var urlyoutube: String = "https://byyswag.000webhostapp.com/?keyword="
+//                urlyoutube = urlyoutube.plus(key_serch2)
+//                clearListVideo()
+//                Getdata().execute(urlyoutube)
+//                initAdapter()
+//                initRecyclerView()
+//            }
+//        }
+
     }
 
     override fun onCreateView(
@@ -183,6 +313,36 @@ class HomeFragment : Fragment() {
         super.onDetach()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode === 0 && resultCode === AppCompatActivity.RESULT_OK) {
+            val results: ArrayList<String> = data!!.getStringArrayListExtra(
+                RecognizerIntent.EXTRA_RESULTS
+            ) as ArrayList<String>
+            EDTSeach.setSearchFocused(true)
+            EDTSeach.setSearchText(results[0])
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+//    public fun checkVoiceRecognition() {
+//        val pm: PackageManager =
+//        val activities: MutableList<ResolveInfo> = pm.queryIntentActivities(
+//            Intent(
+//                RecognizerIntent.ACTION_RECOGNIZE_SPEECH
+//            ), 0
+//        )
+//        if (activities.size == 0) {
+//            Toast.makeText(
+//                this, "Voice recognizer not present",
+//                Toast.LENGTH_SHORT
+//            ).show();
+//        }
+//    }
+    fun getSuggestion(suggestions: MutableList<Suggestion>) {
+        EDTSeach.swapSuggestions(suggestions)
+        EDTSeach.hideProgress()
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -202,5 +362,7 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+
 }
 

@@ -3,22 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment"
     android:id="@+id/frmhome">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="170dp"
         android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:weightSum="3"
         android:id="@+id/RTL1"
         >
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/lrlt1">
         <ImageView
             android:layout_width="40dp"
@@ -35,51 +43,56 @@
             android:textSize="30sp"
             android:textColor="@color/purple_700" />
         </LinearLayout>
-        <EditText
-            android:id="@+id/EDTSeach"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/lrlt1"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/drawble_edt"
-            android:hint="Nhập tên bài hát - Ca sĩ - Mã số"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            android:maxLines="1"
-            android:paddingLeft="20dp">
 
-            <requestFocus />
+<!--        <EditText-->
+<!--            android:id="@+id/EDTSeach"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_below="@+id/lrlt1"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@drawable/drawble_edt"-->
+<!--            android:hint="Nhập tên bài hát - Ca sĩ - Mã số"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textStyle="italic"-->
+<!--            android:maxLines="1"-->
+<!--            android:paddingLeft="20dp">-->
+<!--            -->
+<!--        </EditText>-->
 
-        </EditText>
-
-        <ImageButton
-            android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
+<!--        <ImageButton-->
+<!--            android:id="@+id/searchBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignStart="@+id/EDTSeach"-->
+<!--            android:layout_alignTop="@+id/EDTSeach"-->
+<!--            android:layout_alignEnd="@+id/EDTSeach"-->
+<!--            android:layout_alignBottom="@+id/EDTSeach"-->
+<!--            android:layout_marginStart="257dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="13dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:background="@color/white0"-->
+<!--            android:scaleType="centerInside"-->
+<!--            android:src="@drawable/drawbel_search" />-->
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/EDTSeach"
-            android:layout_alignTop="@+id/EDTSeach"
-            android:layout_alignEnd="@+id/EDTSeach"
-            android:layout_alignBottom="@+id/EDTSeach"
-            android:layout_marginStart="257dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white0"
-            android:scaleType="centerInside"
-            android:src="@drawable/drawbel_search" />
-
+            android:layout_weight="1">
+        </TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/EDTSeach"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="5dp"
             android:padding="5dp"
-            tools:listitem="@layout/item_theloai"/>
+            tools:listitem="@layout/item_theloai"
+            tools:ignore="MissingClass" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -108,7 +121,8 @@
                 android:padding="0dp"
                 android:layout_gravity="center"
                 android:text="0->9"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:id="@+id/SortID"/>
             <ImageButton
                 android:id="@+id/btnyoutube"
                 android:layout_weight="1"
@@ -129,9 +143,33 @@
             android:layout_marginTop="5dp"
             android:clipToPadding="false"
             android:layout_below="@+id/linearsx"
-            tools:listitem="@layout/item_baihat" />
+            tools:listitem="@layout/item_baihat">
 
+        </androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/EDTSeach"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
+            app:floatingSearch_leftActionMode="showHamburger"
+            app:floatingSearch_menu="@menu/menu_search_view"
+            app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
+            app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
+            app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
+            app:floatingSearch_searchHint="Search..."
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_hintTextColor="@color/black"
+            app:floatingSearch_leftActionColor="@color/Gra_end"
+            app:floatingSearch_viewTextColor="@color/black"
+            app:floatingSearch_menuItemIconColor="@color/Gra_end"
+            app:floatingSearch_viewSuggestionItemTextColor="@color/black"
+            app:floatingSearch_showMoveSuggestionUp="true"
+            >
 
+        </com.arlib.floatingsearchview.FloatingSearchView>
+    </RelativeLayout>
 </RelativeLayout>

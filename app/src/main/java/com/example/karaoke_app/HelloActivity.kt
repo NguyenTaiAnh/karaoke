@@ -9,7 +9,6 @@ class HelloActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hello)
-
         val delay = Thread {
             try {
                 Thread.sleep(1500)
@@ -21,5 +20,7 @@ class HelloActivity : AppCompatActivity() {
             }
         }
         delay.start()
+
+
     }
 }
